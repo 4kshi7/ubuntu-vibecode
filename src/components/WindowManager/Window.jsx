@@ -33,11 +33,24 @@ const Window = ({ app }) => {
     height: 500
   });
 
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  React.useEffect(() => {
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (app.minimized) return null;
+
+  const maximizedSize = { 
+    width: windowSize.width, 
+    height: windowSize.height - 28 
+  };
 
   return (
     <Rnd
-      size={app.maximized ? { width: '100vw', height: 'calc(100vh - 28px)' } : { width: rndState.width, height: rndState.height }}
+      size={app.maximized ? maximizedSize : { width: rndState.width, height: rndState.height }}
       position={app.maximized ? { x: 0, y: 28 } : { x: rndState.x, y: rndState.y }}
       onDragStop={(e, d) => {
         if (!app.maximized) {
@@ -56,13 +69,13 @@ const Window = ({ app }) => {
       }}
       minWidth={300}
       minHeight={200}
-      bounds="parent"
+      bounds={app.maximized ? undefined : "parent"}
       dragHandleClassName="window-drag-handle"
-      style={{ zIndex: app.zIndex }}
+      style={{ zIndex: app.zIndex, position: 'absolute' }}
       onMouseDown={() => focusWindow(app.id)}
       disableDragging={app.maximized}
       enableResizing={!app.maximized}
-      className={`absolute flex flex-col rounded-lg shadow-2xl overflow-hidden border border-[#1e1e1e] bg-[#252525] ${app.maximized ? '!rounded-none border-0' : ''}`}
+      className={`flex flex-col shadow-2xl overflow-hidden border border-[#1e1e1e] bg-[#252525] ${app.maximized ? '!rounded-none border-0' : 'rounded-lg'}`}
     >
       {/* Title Bar */}
       <div 
@@ -103,7 +116,7 @@ const Window = ({ app }) => {
       </div>
       
       {/* App Content */}
-      <div className="flex-1 overflow-hidden relative">
+      <div className="flex-1 overflow-hidden relative flex flex-col bg-[#252525] w-full h-full">
         {appComponents[app.id]}
       </div>
     </Rnd>

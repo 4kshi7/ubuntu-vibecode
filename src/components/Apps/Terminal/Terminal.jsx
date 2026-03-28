@@ -79,6 +79,14 @@ const Terminal = () => {
               term.writeln('user');
             } else if (cmd.startsWith('date')) {
               term.writeln(new Date().toString());
+            } else if (cmd.startsWith('mkdir ')) {
+              const dirName = cmd.substring(6).trim();
+              if(dirName) {
+                term.writeln('');
+                // Note: FileSystem interaction simulation, you can store it in a state
+              } else {
+                term.writeln('mkdir: missing operand');
+              }
             } else if (cmd.startsWith('echo ')) {
               term.writeln(cmd.substring(5));
             } else if (cmd.trim().length > 0) {

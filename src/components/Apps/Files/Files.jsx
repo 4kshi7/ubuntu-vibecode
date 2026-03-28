@@ -40,7 +40,7 @@ const Files = () => {
         </div>
 
         {/* Grid Area */}
-        <div className="flex-1 p-6 grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-6 gap-4 content-start overflow-y-auto bg-[#1e1e1e]">
+        <div className="flex-1 p-6 grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-6 gap-4 content-start overflow-y-auto bg-[#1e1e1e] pb-20">
           {Folders.map(folder => (
             <div key={folder.name} className="flex flex-col items-center p-2 rounded hover:bg-[#3d3d3d] cursor-pointer group">
               <div className="text-5xl mb-2 group-hover:scale-110 transition-transform">📁</div>
