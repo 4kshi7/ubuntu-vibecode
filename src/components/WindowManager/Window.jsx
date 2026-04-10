@@ -141,7 +141,7 @@ const Window = ({ app }) => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-hidden relative bg-[#1e1e1e]">
+      <div className="flex-1 min-h-0 overflow-hidden relative bg-[#1e1e1e]">
         {AppComponent && <AppComponent />}
       </div>
     </Rnd>

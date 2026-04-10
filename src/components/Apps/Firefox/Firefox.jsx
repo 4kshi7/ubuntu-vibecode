@@ -164,12 +164,12 @@ const Firefox = () => {
       )}
 
       {/* Viewport */}
-      <div className="flex-1 bg-white overflow-hidden">
+      <div className="flex-1 min-h-0 bg-white overflow-hidden">
         <iframe
           ref={iframeRef}
           key={url}
           src={url}
-          className="w-full h-full border-none"
+          className="w-full h-full border-none block"
           title="Firefox Browser"
           sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
           onLoad={finishLoad}
