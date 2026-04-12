@@ -76,7 +76,7 @@ const Firefox = () => {
   const domain = (() => { try { return new URL(url).hostname; } catch { return url; } })();
 
   return (
-    <div className="flex flex-col w-full h-full bg-[#1c1b22]">
+    <div className="absolute inset-0 flex min-h-0 flex-col bg-[#1c1b22]">
       {/* Chrome UI */}
       <div className="bg-[#2b2a33] border-b border-black/50 flex-shrink-0">
         {/* Tab bar */}
